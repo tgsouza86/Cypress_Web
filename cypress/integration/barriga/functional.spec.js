@@ -5,11 +5,13 @@ import loc from '../../support/locators'
 describe('Should Test at a functional level ', () => {
    
     before(() => {
-        cy.visit('https://barrigareact.wcaquino.me/') 
-        cy.get(loc.LOGIN.USER).type('tgsouza89@gmail.com')
-        cy.get(loc.LOGIN.PASSWORD).type('ti01de02')
-        cy.get(loc.LOGIN.BTN_LOGIN).click()
-        cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
+        cy.login('tgsouza89@gmail.com', 'ti01de02')
+        cy.resetApp()
+      //  cy.visit('https://barrigareact.wcaquino.me/') 
+      //  cy.get(loc.LOGIN.USER).type('tgsouza89@gmail.com')
+      //  cy.get(loc.LOGIN.PASSWORD).type('ti01de02')
+      //  cy.get(loc.LOGIN.BTN_LOGIN).click()
+      //  cy.get(loc.MESSAGE).should('contain', 'Bem vindo')
     })
 
     it('Should creater an account', () => {
