@@ -16,15 +16,9 @@ describe('Should Test at a functional level ', () => {
     })
 
     it('Should creater an account', () => {
-        cy.acessarMenuConta()
+       cy.acessarMenuConta()
        cy.inserirConta()
-      //  cy.get(loc.MENU.SETTINGS).click()
-      //  cy.get(loc.MENU.CONTAS).click()
-
-
-
-     //   cy.get(loc.CONTAS.NOME).type('Conta de teste Tiago')
-     //   cy.get(loc.CONTAS.BTN_SALVAR).click()
+ 
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso')
     })
 
@@ -32,9 +26,7 @@ describe('Should Test at a functional level ', () => {
 
     it('Should update an account', () => {
        // cy.get(':nth-child(3) > :nth-child(2) > .fa-edit')
-       cy.acessarMenuConta()
-     //  cy.get(loc.MENU.SETTINGS).click()
-      // cy.get(loc.MENU.CONTAS).click()
+       cy.acessarMenuConta()    
        cy.xpath(loc.CONTAS.XP_BTN_ALTERAR).click()
        cy.get(loc.CONTAS.NOME)
         .clear()
@@ -42,4 +34,15 @@ describe('Should Test at a functional level ', () => {
        cy.get(loc.CONTAS.BTN_SALVAR).click()
        cy.get(loc.MESSAGE).should('contain', 'Conta atualizada com sucesso') 
     })
+
+
+    it('Should not create an account with same name', () =>{
+        cy.acessarMenuConta()
+        cy.get(loc.CONTAS.NOME).type('Conta alterada')
+        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.get(loc.MESSAGE).should('contain', 'code 400')
+
+    })
 })
+
+
