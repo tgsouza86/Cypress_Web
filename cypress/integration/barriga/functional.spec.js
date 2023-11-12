@@ -43,6 +43,18 @@ describe('Should Test at a functional level ', () => {
         cy.get(loc.MESSAGE).should('contain', 'code 400')
 
     })
+
+
+
+    it('Should create a transaction', () =>{
+        cy.get(loc.MENU.MOVIMENTACAO).click()
+        cy.get(loc.MOVIMENTACAO.DESCRICAO).type('Desc')
+        cy.get(loc.MOVIMENTACAO.VALOR).type('123')
+        cy.get(loc.MOVIMENTACAO.INTERESSADO).type('inter')
+        cy.get(loc.MESSAGE).should('contain', 'sucesso')
+        //cy.get('.list-group > li').should('have.length', 7)
+
+    })
 })
 
 
