@@ -51,8 +51,16 @@ describe('Should Test at a functional level ', () => {
         cy.get(loc.MOVIMENTACAO.DESCRICAO).type('Desc')
         cy.get(loc.MOVIMENTACAO.VALOR).type('123')
         cy.get(loc.MOVIMENTACAO.INTERESSADO).type('inter')
+        cy.get(loc.MOVIMENTACAO.CONTA).select('Conta alterada')
+        cy.get(loc.MOVIMENTACAO.STATUS).click()
+        cy.get(loc.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'sucesso')
-        //cy.get('.list-group > li').should('have.length', 7)
+        cy.get('.list-group > li').should('have.length', 7)
+
+    })
+    it('Should get balace', () =>{
+        cy.get(loc.MENU.HOME).click()
+       // cy.get(loc.FN_XP_SALDO_CONTA).should('contain', '123,00')        
 
     })
 })
