@@ -9,7 +9,8 @@ const locators = {
         SETTINGS: '[data-test=menu-settings]',
         CONTAS:'[href="/contas"]',
         RESET: '[href="/reset"]',
-        MOVIMENTACAO: '[data-test=menu-movimentacao]'
+        MOVIMENTACAO: '[data-test=menu-movimentacao]',
+        EXTRATO: '[data-test=menu-extrato]'
     },
 
     CONTAS: {
@@ -24,8 +25,18 @@ const locators = {
         CONTA: '[data-test=conta]',
         STATUS: '[data-test=status]',
         BTN_SALVAR: '.btn-primary'
+
+        
       
-    }, SALDO: {
+    },
+    EXTRATO: {
+        FN_XP_REMOVER_ELEMENTO: conta => `//span[contains(., ‘${conta}’)]/../../..//i[@class=’far fa-trash-alt’`
+       
+
+        
+      
+    },
+    SALDO: {
         FN_XP_SALDO_CONTA: ':nth-child(5) > :nth-child(2)'
 
       
