@@ -16,16 +16,28 @@ describe('Should Test at a functional level ', () => {
     })
 
     it('Should creater an account', () => {
-       cy.request({
-            method: 'POST',
-            url: 'https://barrigarest.wcaquino.me/signin',
-            body: {
-                email: "tgsouza89@gmail.com",
-                redirecionar: false,
+      cy.request({
+           method: 'POST',
+           url: 'https://barrigarest.wcaquino.me/signin',
+           body: {
+               email: "tgsouza89@gmail.com",
+               redirecionar: false,
                 senha:"ti01de02"
-            }
+           }
 
        }).its('body.token').should('not.be.empty')
+       .then(token => {
+        cy.request({
+            url: 'https://barrigarest.wcaquino.me/contas',
+            method: 'POST',
+            headers:{Authorization: `JWT ${token}`},
+            body: {
+                nome: 'Conta via rest'   
+    
+            }
+          }). then(res => console.log(res))
+        
+       }) 
         
     })
 
