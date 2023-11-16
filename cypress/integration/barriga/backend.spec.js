@@ -1,4 +1,5 @@
 ///<reference types="cypress" />
+import '../../support/commands'
 
 
 
@@ -14,11 +15,16 @@ describe('Should Test at a functional level ', () => {
   
     })
 
+    beforeEach(() =>{
+        cy.resetRest()
+
+    })
+
     it('Should creater an account', () => {
       
      
         cy.request({
-            url: 'https://barrigarest.wcaquino.me/contas',
+            url: '/contas',
             method: 'POST',
             headers:{Authorization: `JWT ${token}`},
             body: {
