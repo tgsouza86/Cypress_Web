@@ -77,6 +77,23 @@ describe('Should Test at a functional level ', () => {
 
     it('Should not create an account with same name', () =>{
 
+        cy.request({
+            url: '/contas',
+            method: 'POST',
+            headers:{Authorization: `JWT ${token}`},
+            body: {
+                nome: 'Conta mesmo nome'   
+    
+            },
+            failOnStatusCode: false
+          }).as('response')
+        
+      
+       cy.get('@response').then(res => {
+            expect(res.status).to.be.equal(400)            
+            expect(res.body.error).to.be.equal('Já existe uma conta com esse nome!')
+       })
+
 
     })
 
