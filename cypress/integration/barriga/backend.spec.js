@@ -100,7 +100,31 @@ describe('Should Test at a functional level ', () => {
 
 
     it('Should create a transaction', () =>{
-       
+        cy.getContaByName('Conta para movimentacoes')
+        .then(contId => {
+            cy.request({
+                method: 'POST',
+                url: '/transacoes',
+                headers:{Authorization: `JWT ${token}`},
+                body: {
+                    conta_id: contId,
+                    data_pagamento: Cypress.moment().add({days: 1}).format('DD/MM/YYYY'),
+                    data_transacao: Cypress.moment().format('DD/MM/YYYY'),
+                    descricao: "desc",
+                    envolvido: "inter",
+                    status: true,
+                    tipo: "REC",
+                    valor: "123"
+    
+                    
+    
+                }
+            }).as('response')
+
+        })
+  
+        cy.get('@response').its('status').should('be.equal', 201) 
+        cy.get('@response').its('body.id').should('exist')        
 
     })
     it('Should get balace', () =>{
