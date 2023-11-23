@@ -124,10 +124,22 @@ describe('Should Test at a functional level ', () => {
         })
   
         cy.get('@response').its('status').should('be.equal', 201) 
-        cy.get('@response').its('body.id').should('exist')        
+        cy.get('@response').its('body.id').should('exist', 201)        
 
     })
     it('Should get balace', () =>{
+        cy.request({
+            url: '/saldo',
+            method: 'GET',
+            headers:{Authorization: `JWT ${token}`}
+
+        }).then(res=> {
+            let saldoConta = null
+            res.body.forEach(c =>{
+                if(c.conta === 'Conta para saldo') saldoConta = c.saldo
+            })
+            expect(saldoConta).to.be.equal('534.00')
+        })
   
     })
     it('Should remova a transaction', () =>{
